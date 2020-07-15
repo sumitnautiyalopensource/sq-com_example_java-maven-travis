@@ -1,24 +1,11 @@
 sudo: false
 install: true
-
 addons:
   sonarcloud:
-    organization: "sonarcloud"
+    organization: "sumitnautiyalopensource"
     token:
-      secure: "jCe1bGGbx0kwEDy9PDcXBlX5YAkjbEX2moL93L8U+UwkmDRbilsSQQYKQtzgUJ4drUU8g0BJywndUBcR0DSF1dW9YjPGgazCrCbiSimXy3IFMwLI5kU2BnJXTHzcQDJDxWr4P5UttL1KsXi72dRTmeTa9XvXckTCkggAPsprTTA/aurYBuh5C8JbK3WKLwctEmC8RcYLg92cK9H09493h+Txk/jmRoS9wisXwPEbJu5+XspUOgBfrfGYMhKs+cJfaIJs7nRdb7nu65opb+SfgiFurYpKKQ1VJuJp9VAHlQ3Uu6XxItDq4Q0wSHI9an5QjzFuQNxsBORTvB6R99PZlgcAtV6jWRRUhn7QKh+7ibviBcKBCwUw+1j57cxIPXEu5CaG9KyCZQSzLpFCx7zk2mKsPatnHc8ucaDCxBRJnkT9ZfVg5V8ac4wqwqfzmoiNUpHQZ1V0pWHdH9iPChMW1+cYmCmxOMDscE5vx4E4aTKySFgfsZQRwDhMm1zm7WPiUNPy2rez5GAhNLKIGhBV3+6DFYdaitrNDet68uvthaRbrzOrhJ8WUAvW2qCnqPJ3FUecOoJCrTxpthIBjsA9EXFaly70DeINdTY6TM5Jyv8OzLTG3xYPlL6OgFoFPKG90pQLVvAgI4pSccERFOqcf57wuxymQWy2aHLjLMyeX+s="
+      secure: "rDv2AQPjF8iljkZ5IbIuLX4L3pCbHztZmrPiOf7V66fWBoG2T1icv2eIesNUE0b8K++4XxPqWG1l1h+S1lgH7qy/t7qIurLJE41OEkXE0TA14r7/QYI+SjujFzaLiWofd0ZEib54yuvX4BuWMCPsijWzSJPg4RuLW1pMIPglAz+r5yfZtOMXaZ1rGGWR834aKgXgySTrg7CZgrfMTpjhcJ0IH9QfRMmtypQPab4mTcZwn5iRZCnfki1YLwVFfTrVIyo8MxUeO9x8nNvfmkxWtOcBwLSI+2lAIqypQ/uctIPFvPnobO5t1n7LpU0rS5i8+O/+96KhsbtKrLMwUahBDNMkL3qIlGbOskeY7ygYDghae+2JSTS2WhhB1659CHufisEadfcYIZBm5msDysn0/K2GHtbqokgqdwrPdPhGYOnz6aNGGPNQ89DX9x8teS1naYDM7ZmYAE9vB6pX6mflNnXLCG25W/YNXRTpy708hP9plyfdSrrZ2PcoiTot/8DsfhTgE2HkmCjBY2zyuO/4oc6l8Igtv8sfHKh/x2br0btcgVoppd7Yg1AQgkosOCnxX3Mt+QAN2MfIhLh3/X+1lNbFZBu/haR2nn5WT0PFF3KoSBo1K7rpVEgRgto9mKLtgRWxeHvlCoFxkpeP4/CCxGUZ0P+rNCmvFz4KSKf/2BE="
 
 script:
-  # JaCoCo is used to have code coverage, "-Pcoverage" activates the maven profile in the pom.xml
-  - mvn clean verify sonar:sonar -Pcoverage 
-
-cache:
-  directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
-
-# Don't copy the following part if you're using this project as a starting point of yours
-notifications:
-  email: false
-  webhooks:
-    - secure: "YnouVsvmF9gDFMT9s8MQsHe5ARaO78SvNeU+MzGKB+l7we7Xge5Zmi6J1KOuOW7zoKkb/wCnUvs+wu9qr4K0VgmWb2wBOpO2c5p85GrSYjPKGwfeZHSmGUpHUoNeDNa32StbTn7oOqtisTbcCWAM3fCPK/HW2l6Mh6eLSsqrlXwCYek2NWWfNeWX0tw22ctMGX6c2I200mGtU3SxPLvzg6MC9AbJ5/VnMkr0tzJnJdQWFGP6Iv6kNBb982tijbdBiriUX6964IPC4XSboK/KFRoHEfxaQuB8rcc64ar4Yr0UIB7Cz2DY4hKi6XaC5RT0O10rfFbCf6UInpzsz2CC4ZMU2Tpnpew/Y7VxhDBXLdq3pkvZS8UXj9J5ivaTJeCIidfoxw7NF8ctPtgIvUI5SoC1V7bjMPTvTTFz7vqtvCUZbAecQgM88MKGyYPD2g4HxzGL7vCGfPSOCMsxySemBkBElqPvDRVLrDNNPJNEkUZ/yQxaFCZpITPD787MyKjeI9NlkG3htZ+i8t2BYmQj28JzoADY+wsdufK8WlkWANISfFyEzyo+JlOoXGX/gfHWpWhaWn3klIDm8LED3FM4/wNRT6yg8BZ1BEQ6D6RSG5SrhYwJPRr6bFzh7MA3+mkO7GW5SVZNVX2Q0qmigmKd6cJBGD3/V0r74LtwRH+sKxI="
-  on_start: always
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=sumitnautiyalopensource_sq-com_example_java-maven-travis
