@@ -17,7 +17,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+
+        <sonar.projectKey>sumitnautiyalopensource_sq-com_example_java-maven-travis</sonar.projectKey>
+        <sonar.organization>sumitnautiyalopensource</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
     </properties>
+
 
     <dependencies>
         <dependency>
